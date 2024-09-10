@@ -1,5 +1,6 @@
 from decimal import Decimal as dec
 
+
 class NoSolutionException(Exception):
     def __init__(self, message):
         super().__init__(message)
