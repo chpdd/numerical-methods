@@ -22,25 +22,19 @@ def get_matrix_from_file(file_name: str):
 
 def triangularize(input_matrix):
     result = input_matrix
-    print(result)
     n = result.shape[0]
-    print(f'n={n}')
 
     for diag_i in range(0, n - 1):
-        print(f'diag_i={diag_i}')
         if result[diag_i, diag_i] == 0:
             non_zero_row = np.where(result[diag_i + 1:, diag_i] != 0)
             if non_zero_row[0].size == 0:
                 raise NoSolutionException("СЛАУ имеет не единственное решение")
             non_zero_row_index = non_zero_row[0][0] + (diag_i + 1)
             result[[diag_i, non_zero_row_index]] = result[[non_zero_row_index, diag_i]]
-            print(result)
         for under_i in range(diag_i + 1, n):
-            print(f'under_i={under_i}')
             if result[under_i, diag_i] != 0:
                 factor = result[under_i, diag_i] / result[diag_i, diag_i]
                 result[under_i] = result[under_i] - (factor * result[diag_i])
-            print(result)
 
     return result
 
@@ -48,11 +42,10 @@ def triangularize(input_matrix):
 def solve_system(input_matrix):
     n = input_matrix.shape[0]
     result = np.array([1.0] * n)
+
     for i in range(n - 1, -1, -1):
-        line_sum = 0
-        for j in range(i + 1, n):
-            line_sum += input_matrix[i][j] * result[j]
-        result[i] = (input_matrix[i][-1] - line_sum) / input_matrix[i][i]
+        result[i] = ((input_matrix[i, -1] - np.dot(input_matrix[i, i + 1: n], result[i + 1: n]))
+                     / input_matrix[i, i])
     return result
 
 
