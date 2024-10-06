@@ -1,4 +1,3 @@
-from decimal import Decimal as dec
 import numpy as np
 
 
