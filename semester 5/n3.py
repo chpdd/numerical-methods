@@ -16,7 +16,7 @@ def plot_parabola(A, B, C, x_min, x_max, color='r', label=None):
     plt.plot(x, y, color, label=label)
 
 
-def parabolic_interpolation(a, b, tol=1e-2, max_iter=100):
+def parabolic_interpolation(a, b, tol=1e-7, max_iter=100):
     x0 = a
     x1 = (a + b) / 2
     x2 = b

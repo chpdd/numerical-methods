@@ -30,16 +30,16 @@ def plot_system(func, x0_start, x0_end, x1_start, x1_end):
 
 def function_system(x):
     # x0 = [0.5, 0.5]
-    # f1 = x[0] ** 2 + x[1] ** 2 - 1
-    # f2 = x[0] - anp.sin(x[1])
+    f1 = x[0] ** 2 + x[1] ** 2 - 1
+    f2 = x[0] - anp.sin(x[1])
 
     # x0 = [0, 0]
     # f1 = anp.exp(x[0]) + x[1] ** 2 - 1
     # f2 = x[0] ** 2 + x[1] - 1
 
     # x0 = [0.5, 0.5]
-    f1 = anp.sin(x[0]) + x[1] - 1
-    f2 = x[0] ** 2 + anp.cos(x[1]) - 0.5
+    # f1 = anp.sin(x[0]) + x[1] - 1
+    # f2 = x[0] ** 2 + anp.cos(x[1]) - 0.5
 
     return anp.array([f1, f2])
 
@@ -61,7 +61,7 @@ def newton_method(func_system, x0, tol=1e-6, max_iter=100):
 
 
 def main():
-    x0 = np.array([0.5, 0.5], dtype=float)  # Начальное приближение
+    x0 = np.array([-2.5, -2.5], dtype=float)  # Начальное приближение
     if x0.size == 2:
         plot_system(function_system, -10, 10, -10, 10)
     solution = newton_method(function_system, x0)
